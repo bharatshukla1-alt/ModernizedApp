@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Account Management Screen (BNK1CAM / BNK1DAM / BNK1UAM / BNK1ACC)</h2>
+  </div>
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      [(ngModel)]="searchAccountNo" 
+      placeholder="Enter Account Number..." 
+      class="form-control search-input"
+    />
+    <button class="btn btn-primary" (click)="onSearch()" [disabled]="isLoading">Search Account</button>
+  </div>
+
+  <div *ngIf="statusMessage" [class]="isError ? 'alert alert-danger' : 'alert alert-success'">
+    {{ statusMessage }}
+  </div>
+
+  <form [formGroup]="accountForm" (ngSubmit)="onSave()" class="crm-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Account Number *</label>
+        <input type="text" formControlName="accountNumber" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Customer Number *</label>
+        <input type="text" formControlName="customerNumber" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Account Type *</label>
+        <select formControlName="accountType" class="form-control">
+          <option value="SAVINGS">Savings</option>
+          <option value="CURRENT">Current</option>
+          <option value="DEPOSIT">Deposit</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Sort Code *</label>
+        <input type="text" formControlName="sortCode" class="form-control" placeholder="12-34-56" />
+      </div>
+
+      <div class="form-group">
+        <label>Interest Rate (%) *</label>
+        <input type="number" step="0.01" formControlName="interestRate" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Overdraft Limit (£)</label>
+        <input type="number" step="0.01" formControlName="overdraftLimit" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Open Date</label>
+        <input type="date" formControlName="openDate" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Last Statement Date</label>
+        <input type="date" formControlName="lastStatementDate" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Next Statement Date</label>
+        <input type="date" formControlName="nextStatementDate" class="form-control" />
+      </div>
+
+      <div class="form-group readonly-group">
+        <label>Available Balance (£)</label>
+        <input type="number" formControlName="availableBalance" class="form-control" readonly />
+      </div>
+
+      <div class="form-group readonly-group">
+        <label>Actual Balance (£)</label>
+        <input type="number" formControlName="actualBalance" class="form-control" readonly />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-success" [disabled]="isLoading">Save / Update Account</button>
+    </div>
+  </form>
+</div>
