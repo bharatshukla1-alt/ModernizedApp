@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Financial Transactions Screen (BNK1TFM / BNK1B2M / BNK1CDM)</h2>
+    <div class="sub-nav">
+      <button [class.active]="activeMode === 'transfer'" (click)="activeMode = 'transfer'">Account Transfer</button>
+      <button [class.active]="activeMode === 'cash'" (click)="activeMode = 'cash'">Deposit / Withdrawal</button>
+    </div>
+  </div>
+
+  <div *ngIf="statusMessage" [class]="isError ? 'alert alert-danger' : 'alert alert-success'">
+    {{ statusMessage }}
+  </div>
+
+  <!-- Account-to-Account Transfer (BNK1TFM / BNK1B2M) -->
+  <form *ngIf="activeMode === 'transfer'" [formGroup]="transferForm" (ngSubmit)="onExecuteTransfer()" class="crm-form">
+    <h3>Fund Transfer</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>From Account Number *</label>
+        <input type="text" formControlName="fromAccountNumber" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>From Sort Code *</label>
+        <input type="text" formControlName="fromSortCode" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>To Account Number *</label>
+        <input type="text" formControlName="toAccountNumber" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>To Sort Code *</label>
+        <input type="text" formControlName="toSortCode" class="form-control" />
+      </div>
+      <div class="form-group full-width">
+        <label>Transfer Amount (£) *</label>
+        <input type="number" step="0.01" formControlName="amount" class="form-control" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">Execute Transfer</button>
+    </div>
+  </form>
+
+  <!-- Cash Deposit / Withdrawal (BNK1CDM) -->
+  <form *ngIf="activeMode === 'cash'" [formGroup]="cashForm" (ngSubmit)="onExecuteCash()" class="crm-form">
+    <h3>Cash Deposit / Withdrawal</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Account Number *</label>
+        <input type="text" formControlName="accountNumber" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Sort Code *</label>
+        <input type="text" formControlName="sortCode" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Transaction Type *</label>
+        <select formControlName="sign" class="form-control">
+          <option value="+">Deposit (+)</option>
+          <option value="-">Withdrawal (-)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Amount (£) *</label>
+        <input type="number" step="0.01" formControlName="amount" class="form-control" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">Process Cash Transaction</button>
+    </div>
+  </form>
+</div>
