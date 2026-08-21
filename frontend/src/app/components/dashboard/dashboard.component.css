@@ -1,0 +1,63 @@
+.crm-container {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+.crm-header {
+  background-color: #1e293b;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.brand-title h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.company-badge {
+  font-size: 0.8rem;
+  background-color: #3b82f6;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.crm-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.crm-nav button {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.crm-nav button:hover {
+  color: #fff;
+  background-color: #334155;
+}
+
+.crm-nav button.active {
+  color: #fff;
+  background-color: #2563eb;
+}
+
+.crm-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
