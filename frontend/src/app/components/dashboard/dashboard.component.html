@@ -1,0 +1,25 @@
+<div class="crm-container">
+  <header class="crm-header">
+    <div class="brand-title">
+      <h1>Enterprise Banking CRM</h1>
+      <span class="company-badge">Company: {{ companyCode }}</span>
+    </div>
+    <nav class="crm-nav">
+      <button [class.active]="activeTab === 'customers'" (click)="setTab('customers')">
+        <i class="icon">👤</i> Customer Management
+      </button>
+      <button [class.active]="activeTab === 'accounts'" (click)="setTab('accounts')">
+        <i class="icon">💳</i> Account Management
+      </button>
+      <button [class.active]="activeTab === 'transfers'" (click)="setTab('transfers')">
+        <i class="icon">🔄</i> Transfers & Cash
+      </button>
+    </nav>
+  </header>
+
+  <main class="crm-content">
+    <app-customer-management *ngIf="activeTab === 'customers'" [company]="companyCode"></app-customer-management>
+    <app-account-management *ngIf="activeTab === 'accounts'" [company]="companyCode"></app-account-management>
+    <app-transfer-funds *ngIf="activeTab === 'transfers'" [company]="companyCode"></app-transfer-funds>
+  </main>
+</div>
