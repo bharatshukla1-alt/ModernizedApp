@@ -1,0 +1,17 @@
+{
+  "name": "modernized-app-e2e",
+  "version": "1.0.0",
+  "description": "Playwright and Selenium End-to-End Test Suite for Modernized CRM Application",
+  "main": "index.js",
+  "scripts": {
+    "test:playwright": "playwright test",
+    "test:playwright:ui": "playwright test --ui",
+    "test:playwright:headed": "playwright test --headed",
+    "test:selenium": "behave e2e/selenium/features"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}
